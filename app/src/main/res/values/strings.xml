@@ -8,5 +8,13 @@
     <string name="inicio_login">Iniciar Sesion </string>
     <string name="nuevo_login">Registrarme </string>
     <string name="bienvenido_registro">REGISTRARME</string>
-
+    <string name="agregar_estudiante">Nuevo estudiante +</string>
+    <!-- Agregar estudiante -->
+    <string name="agregar_bienvenida">Creando estudiante</string>
+    <string name="agregar_codigo">Código del estudiante:</string>
+    <string name="agregar_nombre">Nombre del estudiante:</string>
+    <string name="agregar_apellido">Apellido del estudiante:</string>
+    <string name="agregar_grado">Grado del estudiante:</string>
+    <string name="agregar_aceptar">Guardar</string>
+    <string name="agregar_cancelar">Cancelar</string>
 </resources>
