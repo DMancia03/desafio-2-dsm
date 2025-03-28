@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Colegio Stone</string>
+    <string name="bienvenido_login">BIENVENIDO</string>
+    <string name="usuario_login">Usuario: </string>
+    <string name="contra_login">Contraseña: </string>
+    <string name="regreso_login">Ya tengo usuario </string>
+    <string name="registro_login">Registro Nuevo </string>
+    <string name="inicio_login">Iniciar Sesion </string>
+    <string name="nuevo_login">Registrarme </string>
+    <string name="bienvenido_registro">REGISTRARME</string>
+
 </resources>

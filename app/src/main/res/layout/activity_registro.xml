@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistroActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bienvenido_registro"
+        android:textSize="20sp"/>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/usuario_login"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/correo_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="..."
+        android:inputType="textEmailAddress"
+        android:ems="10" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/contra_login"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/contra_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="..."
+        android:inputType="textPassword"
+        android:ems="10" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registro_login" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/regreso_login" />
+
+</LinearLayout>
