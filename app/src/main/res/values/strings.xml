@@ -9,7 +9,8 @@
     <string name="inicio_login">Iniciar Sesion </string>
     <string name="nuevo_login">¿No tienes cuenta? Regístrate </string>
     <string name="bienvenido_registro">REGISTRARME</string>
-    <string name="agregar_estudiante">Nuevo estudiante +</string>
+    <string name="agregar_estudiante">Nuevo estudiante</string>
+    <string name="bienvenido_maestro">Bienvenido/a maestro/a</string>
     <!-- Agregar estudiante -->
     <string name="agregar_bienvenida">Creando estudiante</string>
     <string name="agregar_codigo">Código del estudiante:</string>

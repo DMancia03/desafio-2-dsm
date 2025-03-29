@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import sv.edu.udb.colegiostone.utils.Accion
 
 class AddEstudianteActivity : AppCompatActivity() {
     // Componentes
+    private lateinit var lbBienvenida : TextView
     private lateinit var txtNombre : EditText
     private lateinit var txtApellido : EditText
     private lateinit var txtGrado : EditText
@@ -47,6 +49,7 @@ class AddEstudianteActivity : AppCompatActivity() {
         txtGrado = findViewById(R.id.txtGradoEstudiante)
         btnAceptar = findViewById(R.id.btnAceptar)
         btnCancelar = findViewById(R.id.btnCancelar)
+        lbBienvenida = findViewById<TextView>(R.id.lbBienvenida)
 
         // Generales
         btnAceptar.setOnClickListener { Guardar() }
@@ -55,8 +58,30 @@ class AddEstudianteActivity : AppCompatActivity() {
         // Control
         val datos : Bundle? = intent.extras
         if(datos != null){
-            accion = datos.getString("accion").toString()
-            id = datos.getString("id").toString()
+            if(!datos.getString("accion").isNullOrEmpty()){
+                accion = datos.getString("accion").toString()
+            }
+
+            if(!datos.getString("id").isNullOrEmpty()){
+                id = datos.getString("id").toString()
+            }
+
+            if(!datos.getString("nombre").isNullOrEmpty()){
+                txtNombre.setText(datos.getString("nombre").toString())
+            }
+
+            if(!datos.getString("apellido").isNullOrEmpty()){
+                txtApellido.setText(datos.getString("apellido").toString())
+            }
+
+            if(!datos.getString("grado").isNullOrEmpty()){
+                txtGrado.setText(datos.getString("grado").toString())
+            }
+        }
+
+        if(!id.isNullOrEmpty() && !id.isNullOrBlank()){
+            //Toast.makeText(this, "-" + id + "-", Toast.LENGTH_LONG).show()
+            lbBienvenida.setText("Editando estudiante")
         }
     }
 
@@ -65,20 +90,37 @@ class AddEstudianteActivity : AppCompatActivity() {
         val apellido = txtApellido.text.toString()
         val grado = txtGrado.text.toString()
 
-        db = FirebaseDatabase.getInstance().getReference("estudiantes")
+        db = FirebaseDatabase.getInstance().getReference(Accion.estudiantes)
 
         val estudiante = Estudiante(nombre, apellido, grado)
 
-        if(accion == Accion.agregar){
-            val newKey = db.push().key
-            if(newKey != null){
-                db.child(newKey).setValue(estudiante).addOnSuccessListener {
-                    Toast.makeText(this, "Se guardó exitosamente!!", Toast.LENGTH_LONG).show()
-                }.addOnFailureListener {
-                    Toast.makeText(this, "Error al guardar", Toast.LENGTH_LONG).show()
+        when(accion){
+            Accion.agregar -> {
+                val newKey = db.push().key
+                if(newKey != null){
+                    db.child(newKey).setValue(estudiante).addOnSuccessListener {
+                        Toast.makeText(this, "Se guardó exitosamente!!", Toast.LENGTH_LONG).show()
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "Error al guardar", Toast.LENGTH_LONG).show()
+                    }
+                }else{
+                    Toast.makeText(this, "Error al generar una clave", Toast.LENGTH_LONG).show()
                 }
-            }else{
-                Toast.makeText(this, "Error al generar una clave", Toast.LENGTH_LONG).show()
+            }
+            Accion.editar -> {
+                if(id.isNotEmpty()){
+                    val registro_actualizar = hashMapOf<String, Any>(
+                        id to estudiante.toMap()
+                    )
+
+                    db.updateChildren(registro_actualizar).addOnSuccessListener {
+                        Toast.makeText(this, "Se actualizó exitosamente!!", Toast.LENGTH_LONG).show()
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "Error al actualizar", Toast.LENGTH_LONG).show()
+                    }
+                }else{
+                    Toast.makeText(this, "No se encontro el id del registro", Toast.LENGTH_LONG).show()
+                }
             }
         }
 

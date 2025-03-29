@@ -1,13 +1,12 @@
 package sv.edu.udb.colegiostone.modelos
 
 class Estudiante {
-    fun key(key : String){
-        //
-    }
-
     var nombre : String = ""
     var apellido : String = ""
     var grado : String = ""
+
+    var key:String? = null
+    var per : MutableMap<String, Boolean> = mutableMapOf()
 
     constructor() { }
 
@@ -21,7 +20,9 @@ class Estudiante {
         return  mapOf(
             "nombre" to nombre,
             "apellido" to apellido,
-            "grado" to grado
+            "grado" to grado,
+            "key" to key,
+            "per" to per
         )
     }
 }
