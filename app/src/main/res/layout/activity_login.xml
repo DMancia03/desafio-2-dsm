@@ -69,6 +69,7 @@
         android:padding="12dp"/>
 
     <Button
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/inicio_login"
@@ -77,6 +78,7 @@
         android:layout_gravity="center"/>
 
     <Button
+        android:id="@+id/btnRegistroNuevo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nuevo_login"

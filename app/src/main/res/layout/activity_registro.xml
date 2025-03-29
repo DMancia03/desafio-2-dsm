@@ -39,6 +39,7 @@
 
 
     <TextView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/contra_login"
@@ -57,6 +58,7 @@
         android:padding="12dp"/>
 
     <Button
+        android:id="@+id/btnAgregarDocente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/registro_login"
@@ -65,6 +67,7 @@
         android:layout_gravity="center"/>
 
     <Button
+        android:id="@+id/btnRetornaLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/regreso_login"
