@@ -3,8 +3,10 @@ package sv.edu.udb.colegiostone
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -15,6 +17,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import sv.edu.udb.colegiostone.modelos.Estudiante
 import sv.edu.udb.colegiostone.utils.Accion
+import sv.edu.udb.colegiostone.utils.MateriaHelper
 import sv.edu.udb.colegiostone.utils.ToastHelper
 
 class AddEstudianteActivity : AppCompatActivity() {
@@ -23,7 +26,8 @@ class AddEstudianteActivity : AppCompatActivity() {
     private lateinit var txtNombre : EditText
     private lateinit var txtApellido : EditText
     private lateinit var txtGrado : EditText
-    private lateinit var txtMateria : EditText
+    //private lateinit var txtMateria : EditText
+    private lateinit var spMateria : Spinner
     private lateinit var txtNotaFinal : EditText
     private lateinit var btnAceptar : Button
     private lateinit var btnCancelar : Button
@@ -51,7 +55,7 @@ class AddEstudianteActivity : AppCompatActivity() {
         txtNombre = findViewById(R.id.txtNombreEstudiante)
         txtApellido = findViewById(R.id.txtApellidoEstudiante)
         txtGrado = findViewById(R.id.txtGradoEstudiante)
-        txtMateria = findViewById(R.id.txtMateriaEstudiante)
+        spMateria = findViewById(R.id.spMateriaEstudiante)
         txtNotaFinal = findViewById(R.id.txtNotaFinalEstudiante)
         btnAceptar = findViewById(R.id.btnAceptar)
         btnCancelar = findViewById(R.id.btnCancelar)
@@ -60,6 +64,16 @@ class AddEstudianteActivity : AppCompatActivity() {
         // Generales
         btnAceptar.setOnClickListener { Guardar() }
         btnCancelar.setOnClickListener { RegresarInicioEstudiante() }
+
+        // Spinner materias
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.materias,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spMateria.adapter = adapter
+        }
 
         // Datos enviados en el intent
         ObtenerDatosIntent()
@@ -95,7 +109,8 @@ class AddEstudianteActivity : AppCompatActivity() {
             txtGrado.setText(datos.getInt("grado").toString())
 
             if(!datos.getString("materia").isNullOrEmpty()){
-                txtMateria.setText(datos.getString("materia").toString())
+                val materia : String = datos.getString("materia").toString()
+                spMateria.setSelection(MateriaHelper.ObtenerIndiceMateria(materia))
             }
 
             if(!datos.getDouble("notaFinal").isNaN()){
@@ -108,7 +123,7 @@ class AddEstudianteActivity : AppCompatActivity() {
         val nombre = txtNombre.text.toString()
         val apellido = txtApellido.text.toString()
         val gradoText = txtGrado.text.toString()
-        val materia = txtMateria.text.toString()
+        val materia = spMateria.selectedItem.toString()
         val notaFinalText = txtNotaFinal.text.toString()
 
         if(nombre.isNullOrEmpty()){

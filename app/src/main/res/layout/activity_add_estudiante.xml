@@ -82,12 +82,10 @@
         android:layout_marginBottom="8dp"
         android:gravity="start"/>
 
-    <EditText
-        android:id="@+id/txtMateriaEstudiante"
+    <Spinner
+        android:id="@+id/spMateriaEstudiante"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:ems="10"
         android:layout_marginBottom="24dp"
         android:padding="12dp"/>
 

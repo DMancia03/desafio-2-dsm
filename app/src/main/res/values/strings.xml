@@ -22,4 +22,12 @@
     <string name="agregar_nota_final">Nota final del estudiante:</string>
     <string name="agregar_aceptar">Guardar</string>
     <string name="agregar_cancelar">Cancelar</string>
+    <string-array name="materias">
+        <item>Matemática</item>
+        <item>Ciencias naturales</item>
+        <item>Ciencias sociales</item>
+        <item>Lenguaje y literatura</item>
+        <item>Moral</item>
+        <item>Religión</item>
+    </string-array>
 </resources>
