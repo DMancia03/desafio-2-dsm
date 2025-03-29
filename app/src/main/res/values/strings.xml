@@ -8,6 +8,7 @@
     <string name="registro_login">Registro Nuevo </string>
     <string name="inicio_login">Iniciar Sesion </string>
     <string name="nuevo_login">¿No tienes cuenta? Regístrate </string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="bienvenido_registro">REGISTRARME</string>
     <string name="agregar_estudiante">Ingresar nueva nota</string>
     <string name="bienvenido_maestro">Bienvenido/a maestro/a</string>
