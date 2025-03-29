@@ -6,5 +6,6 @@ class Accion {
         val ver : String = "r"
         val editar : String = "u"
         val eliminar : String = "d"
+        val estudiantes : String = "estudiantes"
     }
 }
