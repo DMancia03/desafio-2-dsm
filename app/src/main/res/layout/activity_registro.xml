@@ -7,51 +7,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegistroActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/bienvenido_registro"
-        android:textSize="20sp"/>
+        android:textStyle="bold"
+        android:textSize="26sp"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"/>
     
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/usuario_login"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_marginBottom="8dp"
+        android:gravity="start"/>
 
     <EditText
         android:id="@+id/correo_usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="..."
+        android:hint=""
         android:inputType="textEmailAddress"
-        android:ems="10" />
+        android:ems="10"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp"/>
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/contra_login"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_marginBottom="8dp"
+        android:gravity="start"/>
 
     <EditText
         android:id="@+id/contra_usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="..."
+        android:hint=""
         android:inputType="textPassword"
-        android:ems="10" />
+        android:ems="10"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/registro_login" />
+        android:text="@string/registro_login"
+        android:backgroundTint="#00796B"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/regreso_login" />
+        android:text="@string/regreso_login"
+        android:backgroundTint="#00796B"
+        android:layout_gravity="center"/>
 
 </LinearLayout>
