@@ -1,6 +1,7 @@
 # Segundo Desafío Práctico
 
 **Colegio Stone**
+(/img_repo/play_store_512.png)
 
 ## Integrantes
 Yensy Alejandra Cruz Barahona | CB121442
