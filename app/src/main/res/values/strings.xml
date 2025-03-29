@@ -7,7 +7,7 @@
     <string name="regreso_login">Ya tengo usuario </string>
     <string name="registro_login">Registro Nuevo </string>
     <string name="inicio_login">Iniciar Sesion </string>
-    <string name="nuevo_login">Registrarme </string>
+    <string name="nuevo_login">¿No tienes cuenta? Regístrate </string>
     <string name="bienvenido_registro">REGISTRARME</string>
     <string name="agregar_estudiante">Nuevo estudiante +</string>
     <!-- Agregar estudiante -->
