@@ -26,17 +26,19 @@ class AdaptadorEstudiante (
             null
         )
 
-        var tvNombre = rowView.findViewById<TextView>(R.id.tvNombre)
-        var tvApellido = rowView.findViewById<TextView>(R.id.tvApellido)
-        var tvGrado = rowView.findViewById<TextView>(R.id.tvGrado)
+        val tvNombre = rowView.findViewById<TextView>(R.id.tvNombre)
+        val tvApellido = rowView.findViewById<TextView>(R.id.tvApellido)
+        val tvGrado = rowView.findViewById<TextView>(R.id.tvGrado)
+        val tvMateria = rowView.findViewById<TextView>(R.id.tvMateria)
+        val tvNotaFinal = rowView.findViewById<TextView>(R.id.tvNotaFinal)
 
         val estudiante = estudiantes[position]
-        //Log.i("ESTUDIANTE", "////////")
-        //Log.i("ESTUDIANTE", estudiante.key.toString())
 
         tvNombre.text = "Nombre: ${estudiante.nombre}"
         tvApellido.text = "Apellido: ${estudiante.apellido}"
-        tvGrado.text = "Grado: ${estudiante.grado}"
+        tvGrado.text = "Grado: ${estudiante.grado}°"
+        tvMateria.text = "Materia: ${estudiante.materia}"
+        tvNotaFinal.text = "Nota final: ${estudiante.notaFinal.toString()}"
 
         return rowView
     }

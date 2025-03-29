@@ -58,12 +58,14 @@ class MainActivity : AppCompatActivity() {
 
         lista_estudiantes.setOnItemClickListener(object  : AdapterView.OnItemClickListener{
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val intent_agregar = Intent(baseContext, AddEstudianteActivity::class.java)
+                val intent_agregar = Intent(this@MainActivity, AddEstudianteActivity::class.java)
                 intent_agregar.putExtra("accion", Accion.editar)
                 intent_agregar.putExtra("id", estudiantes!![p2].key)
                 intent_agregar.putExtra("nombre", estudiantes!![p2].nombre)
                 intent_agregar.putExtra("apellido", estudiantes!![p2].apellido)
                 intent_agregar.putExtra("grado", estudiantes!![p2].grado)
+                intent_agregar.putExtra("materia", estudiantes!![p2].materia)
+                intent_agregar.putExtra("notaFinal", estudiantes!![p2].notaFinal)
                 startActivity(intent_agregar)
             }
         })

@@ -72,6 +72,43 @@
         android:ems="10"
         android:layout_marginBottom="24dp"
         android:padding="12dp"/>
+
+    <TextView
+        android:id="@+id/lbMateria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/agregar_materia"
+        android:textSize="20sp"
+        android:layout_marginBottom="8dp"
+        android:gravity="start"/>
+
+    <EditText
+        android:id="@+id/txtMateriaEstudiante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"/>
+
+    <TextView
+        android:id="@+id/lbNotaFinal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/agregar_nota_final"
+        android:textSize="20sp"
+        android:layout_marginBottom="8dp"
+        android:gravity="start"/>
+
+    <EditText
+        android:id="@+id/txtNotaFinalEstudiante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"/>
+
     <Button
         android:id="@+id/btnAceptar"
         android:layout_width="match_parent"
@@ -79,12 +116,14 @@
         android:text="@string/agregar_aceptar"
         android:backgroundTint="#00796B"
         android:layout_marginBottom="16dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textColor="@color/white"/>
     <Button
         android:id="@+id/btnCancelar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/agregar_cancelar"
         android:backgroundTint="#00796B"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textColor="@color/white"/>
 </LinearLayout>

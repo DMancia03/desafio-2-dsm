@@ -2,6 +2,7 @@ package sv.edu.udb.colegiostone
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -14,6 +15,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import sv.edu.udb.colegiostone.modelos.Estudiante
 import sv.edu.udb.colegiostone.utils.Accion
+import sv.edu.udb.colegiostone.utils.ToastHelper
 
 class AddEstudianteActivity : AppCompatActivity() {
     // Componentes
@@ -21,6 +23,8 @@ class AddEstudianteActivity : AppCompatActivity() {
     private lateinit var txtNombre : EditText
     private lateinit var txtApellido : EditText
     private lateinit var txtGrado : EditText
+    private lateinit var txtMateria : EditText
+    private lateinit var txtNotaFinal : EditText
     private lateinit var btnAceptar : Button
     private lateinit var btnCancelar : Button
     // Base de datos
@@ -47,6 +51,8 @@ class AddEstudianteActivity : AppCompatActivity() {
         txtNombre = findViewById(R.id.txtNombreEstudiante)
         txtApellido = findViewById(R.id.txtApellidoEstudiante)
         txtGrado = findViewById(R.id.txtGradoEstudiante)
+        txtMateria = findViewById(R.id.txtMateriaEstudiante)
+        txtNotaFinal = findViewById(R.id.txtNotaFinalEstudiante)
         btnAceptar = findViewById(R.id.btnAceptar)
         btnCancelar = findViewById(R.id.btnCancelar)
         lbBienvenida = findViewById<TextView>(R.id.lbBienvenida)
@@ -55,17 +61,29 @@ class AddEstudianteActivity : AppCompatActivity() {
         btnAceptar.setOnClickListener { Guardar() }
         btnCancelar.setOnClickListener { RegresarInicioEstudiante() }
 
-        // Control
+        // Datos enviados en el intent
+        ObtenerDatosIntent()
+
+        // Si la accion es editar
+        if(accion == Accion.editar){
+            lbBienvenida.setText("Editando nota")
+        }
+    }
+
+    private fun ObtenerDatosIntent(){
         val datos : Bundle? = intent.extras
         if(datos != null){
+            // Accion que realizara
             if(!datos.getString("accion").isNullOrEmpty()){
                 accion = datos.getString("accion").toString()
             }
 
+            // Id del registro si tiene
             if(!datos.getString("id").isNullOrEmpty()){
                 id = datos.getString("id").toString()
             }
 
+            // Valores que son enviados para escribirse en los txt
             if(!datos.getString("nombre").isNullOrEmpty()){
                 txtNombre.setText(datos.getString("nombre").toString())
             }
@@ -74,25 +92,75 @@ class AddEstudianteActivity : AppCompatActivity() {
                 txtApellido.setText(datos.getString("apellido").toString())
             }
 
-            if(!datos.getString("grado").isNullOrEmpty()){
-                txtGrado.setText(datos.getString("grado").toString())
-            }
-        }
+            txtGrado.setText(datos.getInt("grado").toString())
 
-        if(!id.isNullOrEmpty() && !id.isNullOrBlank()){
-            //Toast.makeText(this, "-" + id + "-", Toast.LENGTH_LONG).show()
-            lbBienvenida.setText("Editando estudiante")
+            if(!datos.getString("materia").isNullOrEmpty()){
+                txtMateria.setText(datos.getString("materia").toString())
+            }
+
+            if(!datos.getDouble("notaFinal").isNaN()){
+                txtNotaFinal.setText(datos.getDouble("notaFinal").toString())
+            }
         }
     }
 
     private fun Guardar(){
         val nombre = txtNombre.text.toString()
         val apellido = txtApellido.text.toString()
-        val grado = txtGrado.text.toString()
+        val gradoText = txtGrado.text.toString()
+        val materia = txtMateria.text.toString()
+        val notaFinalText = txtNotaFinal.text.toString()
+
+        if(nombre.isNullOrEmpty()){
+            ToastHelper.ToastSimple(this, "Debe ingresar un nombre")
+            return
+        }
+
+        if(apellido.isNullOrEmpty()){
+            ToastHelper.ToastSimple(this, "Debe ingresar un apellido")
+            return
+        }
+
+        if(gradoText.isNullOrEmpty()){
+            ToastHelper.ToastSimple(this, "Debe ingresar un grado")
+            return
+        }
+        else if(gradoText.toIntOrNull() == null){
+            ToastHelper.ToastSimple(this, "Debe ingresar un grado válido")
+            return
+        }
+
+        val grado = gradoText.toInt()
+
+        if(grado < 1 || grado > 9){
+            ToastHelper.ToastSimple(this, "Debe ingresar un grado entre 1° y 9°")
+            return
+        }
+
+        if(materia.isNullOrEmpty()){
+            ToastHelper.ToastSimple(this, "Debe ingresar una materia")
+            return
+        }
+
+        if(notaFinalText.isNullOrEmpty()){
+            ToastHelper.ToastSimple(this, "Debe ingresar una nota Final")
+            return
+        }
+        else if(notaFinalText.toDoubleOrNull() == null){
+            ToastHelper.ToastSimple(this, "Debe ingresar una nota final válida")
+            return
+        }
+
+        val notaFinal : Double = notaFinalText.toDouble()
+
+        if(notaFinal < 0 || notaFinal > 10){
+            ToastHelper.ToastSimple(this, "Debe ingresar una nota final entre 0 y 10")
+            return
+        }
 
         db = FirebaseDatabase.getInstance().getReference(Accion.estudiantes)
 
-        val estudiante = Estudiante(nombre, apellido, grado)
+        val estudiante = Estudiante(nombre, apellido, grado, materia, notaFinal)
 
         when(accion){
             Accion.agregar -> {

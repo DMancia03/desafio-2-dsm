@@ -21,4 +21,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tvMateria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tvNotaFinal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"/>
 </LinearLayout>
