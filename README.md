@@ -1,6 +1,5 @@
-# Segundo Desafío Práctico
+# Sistema de notas - Colegio Stone
 
-**Sistema de notas - Colegio Stone**
 ![Icono de colegio stone](/img_repo/play_store_512.png)
 
 ## Integrantes
